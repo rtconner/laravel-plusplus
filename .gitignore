@@ -1,0 +1,7 @@
+composer.lock
+.DS_Store
+Thumbs.db
+.settings
+.project
+.buildpath
+/vendor

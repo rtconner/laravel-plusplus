@@ -1,0 +1,20 @@
+{
+	"name": "rtconner/laravel-plusplus",
+	"description": "Things that I add to every Laravel project I work on",
+	"license": "MIT",
+	"require": {
+		"php": ">= 5.4.0",
+		"laravel/framework": "4.2.*",
+		"webpatser/laravel-uuid": ">= 1.0.0"
+	},
+	"require-dev": {
+	},
+	"autoload": {
+		"psr-0" : {
+			"Conner\\PlusPlus\\": "src/"
+		},
+		"psr-4" : {
+			"Conner\\Command\\": "src/commands/"
+		}
+	}
+}
