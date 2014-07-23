@@ -175,6 +175,28 @@ function strip_nl($str) {
 }
 
 /**
+ * Does $hastack string start with $need string
+ */
+function starts_with($haystack, $needle, $case=true) {
+    if ($case)
+        return strpos($haystack, $needle, 0) === 0;
+
+    return stripos($haystack, $needle, 0) === 0;
+}
+
+/**
+ * Does $hastack string end with $need string
+ */
+function ends_with($haystack, $needle, $case=true) {
+    $expectedPosition = strlen($haystack) - strlen($needle);
+
+    if ($case)
+        return strrpos($haystack, $needle, 0) === $expectedPosition;
+
+    return strripos($haystack, $needle, 0) === $expectedPosition;
+}
+
+/**
  * Fetch currently logged in user
  * user() // return User object of currently logged in user
  * user($field) // return single field
