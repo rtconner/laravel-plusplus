@@ -12,6 +12,12 @@ class PlusPlusServiceProvider extends ServiceProvider {
 		include(__DIR__.'/../../plus-functions.php');
 		include(__DIR__.'/../../plus-constants.php');
 		include(__DIR__.'/../../plus-exceptions.php');
+		
+		$this->app['bootstrapform'] = $this->app->share(function($app) {
+			$form = new BootstrapFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
+
+			return $form->setSessionStore($app['session.store']);
+		});
 	}
 	
 	public function boot() {
@@ -22,10 +28,11 @@ class PlusPlusServiceProvider extends ServiceProvider {
 			'\Conner\Command\CodeUpdate',
 			'\Conner\Command\DBExpunge',
 		));
+		
 	}
 	
 	public function provides() {
-		return array();
+		return array('bootstrapform');
 	}
 
 }

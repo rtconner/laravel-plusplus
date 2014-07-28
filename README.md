@@ -8,6 +8,9 @@ Laravel makes development very fast. This packages is meant to make it just a li
 'providers' => array(
 	'Conner\PlusPlus\PlusPlusServiceProvider',
 ),
+'aliases' => array(
+	'Form'            => 'Conner\PlusPlus\BootstrapFormFacade',
+),
 ```
 
 Added consants: SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, YEAR, DS
