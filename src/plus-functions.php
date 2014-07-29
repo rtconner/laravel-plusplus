@@ -7,6 +7,11 @@
  */
 function array_make() {
 	$arr = func_get_args();
+	
+	if(is_array($arr[0])) {
+		return array_combine($arr[0], $arr[0]);
+	}
+	
 	return array_combine($arr, $arr);
 }
 
