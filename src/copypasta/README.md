@@ -17,8 +17,8 @@ Artisan::add(new Conner\Command\RebuildDatabase());
 ```bash
 crontab -e
   
-@hourly /path/to/artisan cron:hour
-@daily /path/to/artisan cron:day
-@weekly /path/to/artisan cron:week
-@monthly /path/to/artisan cron:month
+@hourly /var/www/staging/artisan cron:hour
+@daily /var/www/staging/artisan cron:day
+@weekly /var/www/staging/artisan cron:week
+@monthly /var/www/staging/artisan cron:month
 ```
