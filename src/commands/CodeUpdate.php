@@ -26,7 +26,7 @@ class CodeUpdate extends Command {
 		$this->call('clear-compiled');
 		$this->line('');
 
-		$this->call('migrate');
+		$this->call('migrate', array('--force'));
 		
 		$this->call('optimize');
 		
