@@ -21,6 +21,7 @@ class CodePerms extends Command {
 			$this->line(`find . -type f -exec chmod 660 {} \;`);
 			$this->line(`find . -type d -exec chmod 770 {} \;`);
 			$this->line(`chmod +x ./artisan`);
+			$this->line(`chmod +x ./vendor/bin/*`);
 			$this->line('');
 		}
 
