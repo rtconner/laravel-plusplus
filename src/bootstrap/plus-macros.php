@@ -25,3 +25,15 @@ Form::macro("check", function($name, $value = 1, $checked = null, $options = arr
 HTML::macro("gravatar", function($email, $size = 80, $default = 'mm', $rating = 'pg', $attributes = array()) {
 	return HTML::image(gravatar($email, $size, $default, $rating), null, $attributes, $secure = null);
 });
+
+HTML::macro('pageHeader', function($title, $small='') {
+	
+	$html = '<div class="page-header"><h1>'.e($title);
+	
+	if(strlen($small)) {
+		$html .= '<small><i class="icon-double-angle-right"></i>'.e($small).'</small>';
+	}
+	
+	return $html .'</h1></div>';
+	
+});
