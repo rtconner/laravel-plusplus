@@ -7,10 +7,10 @@ Laravel makes development very fast. This packages is meant to make it just a li
 
 ```php
 'providers' => array(
-	'Conner\PlusPlus\PlusPlusServiceProvider',
+	'\Conner\PlusPlus\PlusPlusServiceProvider',
 ),
 'aliases' => array(
-	'Form'            => 'Conner\PlusPlus\BootstrapFormFacade',
+	'Form'            => '\Conner\PlusPlus\BootstrapFormFacade',
 ),
 ```
 
@@ -35,7 +35,7 @@ Use a UUID as a primary ID for any model with this trait.
 ```php
 $table->string('id', 36)->primary(); // put this into a migration on the table
 
-use Conner\PlusPlus\UuidableTrait;
+use \Conner\PlusPlus\UuidableTrait;
 ```
 
 Extra added console commands
