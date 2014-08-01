@@ -26,6 +26,12 @@ HTML::macro("gravatar", function($email, $size = 80, $default = 'mm', $rating = 
 	return HTML::image(gravatar($email, $size, $default, $rating), null, $attributes, $secure = null);
 });
 
+/**
+ * Return Twitter Bootstrap formatter page-header div
+ * 
+ * @param $title string of header
+ * @small optional string of sub-heading note 
+ */
 HTML::macro('pageHeader', function($title, $small='') {
 	
 	$html = '<div class="page-header"><h1>'.e($title);
