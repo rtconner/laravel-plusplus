@@ -1,8 +1,4 @@
-<div class="row">
 
-	<div class="col-md-4 col-md-offset-4">
-	
-<div class="well">
 
 	{{ Form::open(array('class'=>'form-horizontal', 'role'=>'form')) }}
 		<div class="form-group">
@@ -36,7 +32,3 @@
 	<p><a href="/forgotpassword">Forgot Username or Password?</a></p>
 	<p><a href="/register">Create New Account</a></p>
 	
-</div>
-
-	</div>
-</div>
