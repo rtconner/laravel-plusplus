@@ -28,9 +28,8 @@ class CodeUpdate extends Command {
 
 		if($this->input->getOption('expunge')) {
 			$this->call('db:expunge', array('--force'=>true));
-		} else {
-			$this->call('migrate', array('--force'=>true));
 		}
+		$this->call('migrate', array('--force'=>true));
 		
 		$this->call('optimize');
 		
