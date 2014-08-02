@@ -9,6 +9,10 @@ class DBExpunge extends Command {
 	protected $description = 'Delete all database tables.';
 
 	public function fire() {
+// 		if (\App::environment() === 'production') {
+// 			$this->error('ERROR : Do not run db:rebuild in production');
+// 			die();
+// 		}
 		
 		switch(DB::connection()->getDriverName()) {
 			case 'mysql':
@@ -27,6 +31,8 @@ class DBExpunge extends Command {
 				$this->info("Deleted all tables from MySQL database `$database`");
 				break;
 			case 'pgsql':
+				$database = DB::connection()->getDatabaseName();
+				
 				$result = DB::raw('drop schema public cascade;');
 				DB::statement($result);
 		
