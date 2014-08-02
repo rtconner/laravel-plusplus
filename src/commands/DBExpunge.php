@@ -9,10 +9,6 @@ class DBExpunge extends Command {
 	protected $description = 'Delete all database tables.';
 
 	public function fire() {
-		if (\App::environment() === 'production') {
-			$this->error('ERROR : Do not run db:expunge in production');
-			die();
-		}
 		
 		switch(DB::connection()->getDriverName()) {
 			case 'mysql':
