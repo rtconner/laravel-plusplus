@@ -6,9 +6,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Illuminate\Foundation\Artisan;
 use \DB;
 
-class CodeMigrate extends Command {
+class CodeUpdate extends Command {
 
-	protected $name = 'code:migrate';
+	protected $name = 'code:update';
 
 	protected $description = 'Update files from Git Repo. Fix permissions, clear caches, migrate';
 
@@ -26,12 +26,22 @@ class CodeMigrate extends Command {
 		$this->call('clear-compiled');
 		$this->line('');
 
-		$this->call('migrate', array('--force'=>true));
+		if($this->input->getOption('expunge')) {
+			$this->call('db:expunge', array('--force'=>true));
+		} else {
+			$this->call('migrate', array('--force'=>true));
+		}
 		
 		$this->call('optimize');
 		
 		$this->call('up');
 		
+	}
+	
+	protected function getOptions() {
+		return array(
+			array('expunge', null, InputOption::VALUE_NONE, 'Delete and re-create database instead of migrating'),
+		);
 	}
 
 }

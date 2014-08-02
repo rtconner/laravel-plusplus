@@ -1,6 +1,7 @@
 <?php namespace Conner\Command;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 use \DB;
 
 class DBExpunge extends Command {
@@ -9,10 +10,10 @@ class DBExpunge extends Command {
 	protected $description = 'Delete all database tables.';
 
 	public function fire() {
-// 		if (\App::environment() === 'production') {
-// 			$this->error('ERROR : Do not run db:rebuild in production');
-// 			die();
-// 		}
+		if (!$this->input->getOption('force') && \App::environment() === 'production') {
+			$this->error('ERROR : use --force to expunge on a production environment');
+			die();
+		}
 		
 		switch(DB::connection()->getDriverName()) {
 			case 'mysql':
@@ -43,5 +44,11 @@ class DBExpunge extends Command {
 				break;
 		}
 		
+	}
+	
+	protected function getOptions() {
+		return array(
+			array('force', null, InputOption::VALUE_NONE, 'Force expunge to run on production'),
+		);
 	}
 }

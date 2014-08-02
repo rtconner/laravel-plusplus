@@ -25,7 +25,7 @@ class PlusPlusServiceProvider extends ServiceProvider {
 		
 		$this->commands(array(
 			'\Conner\Command\CodePerms',
-			'\Conner\Command\CodeMigrate',
+			'\Conner\Command\CodeUpdate',
 			'\Conner\Command\DBExpunge',
 		));
 		
