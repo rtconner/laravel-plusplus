@@ -11,7 +11,7 @@
 	},
 	"autoload": {
 		"psr-0" : {
-			"Conner\\PlusPlus\\": "src/"
+			"Conner\\": "src/"
 		},
 		"psr-4" : {
 			"Conner\\Command\\": "src/commands/"

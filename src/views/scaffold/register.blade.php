@@ -5,7 +5,7 @@
 
 	<div class="panel-body">
 		{{ Form::open(array('autocomplete'=>'off')) }}
-		
+
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				<div class="form-group">
@@ -27,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
 				<div class="form-group">
@@ -49,9 +49,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="row">
-		
+
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<div class="input-group">
@@ -65,17 +65,17 @@
 				<div class="form-group">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
-						{{Form::password('confirm', ['class' => 'form-control', 'placeholder' => 'Confirm password', 'required'])}}
+						{{Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm password', 'required'])}}
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<div id="pass-info"></div>
 				</div>
 			</div>
-				
+
 			@if($captcha)
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-xs-12 col-sm-12 col-md-12">
 				<div class="form-group">
 					<div class="input-group">
@@ -96,17 +96,17 @@
 				<span class="text-danger">{{$errors->first('captcha_text')}}</span>
 			</div>
 			@endif
-			
+
 		</div>
-		
+
 		<button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
 		{{ Form::close() }}
-	
+
 		<hr>
-	
+
 		<p>Already have an account? <a href="{{ URL::route('login') }}">Log in</a></p>
 		<p><a href="/forgotpassword">Forgot Username or Password?</a></p>
-		
-	
+
+
 	</div>
 </div>
