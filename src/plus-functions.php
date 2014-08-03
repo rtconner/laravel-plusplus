@@ -219,6 +219,22 @@ if(!function_exists('user_reload')) {
 	}
 }
 
+if ( ! function_exists('with_empty'))
+{
+	/**
+	 * Return list with empty option prepended. Useful in Form::select.
+	 * 
+	 * @param array  $list
+	 * @param mixed  $empty
+	 */
+	function with_empty($list, $empty='')
+	{
+		if(!is_array($empty)) $empty = array(''=>$empty);
+
+		return  $empty + $list;
+	}
+}
+
 /**
  * Display an escaped value, or a dash if the value is empty
  */
