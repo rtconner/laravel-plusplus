@@ -1,7 +1,6 @@
 <?php
 
-
-if(!empty($errors) && get_class($errors) == 'Illuminate\Support\ViewErrorBag') {
+if(get_class($errors) == 'Illuminate\Support\ViewErrorBag' && $errors->any()) {
 	
 	$messages = $errors->all();
 	
