@@ -1,7 +1,7 @@
 <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete-{{{$item->id}}}">
 	<i class="fa fa-trash-o"></i> Delete Record</a>
 
-{{ Form::open(array('route'=>['admin.hook.destroy', $item->id], 'method'=>'delete')) }}
+{{ Form::open(array('method'=>'delete')) }}
 <div class="modal fade" id="confirm-delete-{{{$item->id}}}" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
