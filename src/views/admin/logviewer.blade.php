@@ -1,0 +1,1 @@
+@include('plusplus::scaffold.logviewer')
