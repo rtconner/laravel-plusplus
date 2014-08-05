@@ -45,7 +45,7 @@ HTML::macro('pageHeader', function($title, $small='', $right='') {
 	
 	$html .= '<h1>'.e($title);
 	if(strlen($small)) {
-		$html .= '<small><i class="icon-double-angle-right"></i>'.e($small).'</small>';
+		$html .= ' <small><i class="fa fa-angle-double-right"></i> '.e($small).'</small>';
 	}
 	
 	return $html .'</h1></div>';

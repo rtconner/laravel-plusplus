@@ -11,7 +11,7 @@ $route = $matches[0].'destroy';
 <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete-{{{$item->id}}}">
 	<i class="fa fa-trash-o"></i> Delete Record</a>
 
-{{ Form::open(array('route'=>$route, 'method'=>'delete')) }}
+{{ Form::open(array('route'=>[$route, $item->id], 'method'=>'delete')) }}
 <div class="modal fade" id="confirm-delete-{{{$item->id}}}" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
