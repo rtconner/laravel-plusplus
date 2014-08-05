@@ -1,7 +1,17 @@
+<?php
+
+$route = \Route::currentRouteName();
+
+$matches = array();
+preg_match('/^(.*[\.])/', $route, $matches);
+$route = $matches[0].'destroy';
+
+?>
+
 <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirm-delete-{{{$item->id}}}">
 	<i class="fa fa-trash-o"></i> Delete Record</a>
 
-{{ Form::open(array('method'=>'delete')) }}
+{{ Form::open(array('route'=>$route, 'method'=>'delete')) }}
 <div class="modal fade" id="confirm-delete-{{{$item->id}}}" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -17,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-danger pull-left"><i class="fa fa-trash-o"></i> Delete</button>
-                <a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                <a class="btn btn-default" data-dismiss="modal">Cancel</a>
             </div>
         </div>
     </div>

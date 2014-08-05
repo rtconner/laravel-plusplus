@@ -21,7 +21,7 @@
 		</div>
 		<div class="checkbox">
 			<label for="RememberMe">
-				{{ Form::check('remember', 1, null, array('id'=>'RememberMe')) }}
+				{{ Form::check('remember', array('id'=>'RememberMe')) }}
 				Remember me next time</label>
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" style="margin: 15px 0;"><i class="fa fa-arrow-circle-o-right"></i> Login</button>

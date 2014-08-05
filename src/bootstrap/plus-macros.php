@@ -1,12 +1,15 @@
 <?php
 
 /**
- * Checkbox with a hidden input attached that provided a fallback value of 0 
+ * Checkbox with a hidden input attached that provided a fallback value of 0
  * use $options['fallback'] to check from the default of 0
  */
-Form::macro("check", function($name, $value = 1, $checked = null, $options = array()) {
+Form::macro("check", function($name, $options = array()) {
 	$fallback = array_key_exists('fallback', $options) ? $options['fallback'] : 0;
 	unset($options['fallback']);
+	
+	$value = 1;
+	$checked = null;
 	
 	return Form::hidden($name, $fallback) . Form::checkbox($name, $value, $checked, $options);
 });
@@ -28,14 +31,19 @@ HTML::macro("gravatar", function($email, $size = 80, $default = 'mm', $rating = 
 
 /**
  * Return Twitter Bootstrap formatter page-header div
- * 
+ *
  * @param $title string of header
- * @small optional string of sub-heading note 
+ * @small optional string of sub-heading note
  */
-HTML::macro('pageHeader', function($title, $small='') {
+HTML::macro('pageHeader', function($title, $small='', $right='') {
 	
-	$html = '<div class="page-header"><h1>'.e($title);
+	$html = '<div class="page-header">';
+
+	if(strlen($right)) {
+		$html .= '<div class="pull-right">'.$right.'</div>';
+	}
 	
+	$html .= '<h1>'.e($title);
 	if(strlen($small)) {
 		$html .= '<small><i class="icon-double-angle-right"></i>'.e($small).'</small>';
 	}
