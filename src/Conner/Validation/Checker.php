@@ -44,6 +44,8 @@ abstract class Checker {
      * @return array
      */
     public static function validate($input) {
+    	static::boot();
+    	
         Event::fire('validating', [$input]);
 
         $validator = static::getValidator($input);
