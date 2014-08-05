@@ -16,7 +16,7 @@ abstract class Checker {
     /**
      * Validation rules
      */
-    protected static $rules =array();
+    protected static $rules = array();
 
     /**
      * Custom validation messages
@@ -26,9 +26,9 @@ abstract class Checker {
 
 
 	/**
-	 * Validator object
+	 * Validator objects
 	 */
-    protected static $validator;
+    protected static $validator = array();
 
     /**
      * Optional bootup before validation
@@ -44,13 +44,13 @@ abstract class Checker {
      * @return array
      */
     public static function validate($input) {
+    	static::boot();
+    	
         Event::fire('validating', [$input]);
 
         $validator = static::getValidator($input);
 
         if($validator->fails()) {
-            static::$errors = $validator->messages();
-
             return false;
         }
 
@@ -63,7 +63,8 @@ abstract class Checker {
      * @return array
      */
     public static function getErrors() {
-		return static::$errors;
+        $validator = static::getValidator();
+		return $validator->messages();
     }
 
     /**
@@ -81,11 +82,17 @@ abstract class Checker {
      * @return \Validator
      */
     public static function getValidator($input=null) {
-    	if(is_null(static::$validator)) {
-    		static::$validator = Validator::make($input, static::$rules, static::$messages);
+    	$class = get_called_class();
+    	
+    	if(empty(static::$validator[$class]) && !is_null($input)) {
+    		static::$validator[$class] = Validator::make($input, static::$rules, static::$messages);
+    	}
+    	
+    	if(empty(static::$validator[$class])) {
+    		throw new \Exception('Must call validate() before you call getValidator(). Those are the rules. ['.$class.']');
     	}
 
-    	return static::$validator;
+    	return static::$validator[$class];
     }
 
 }

@@ -1,6 +1,6 @@
 
 
-	{{ Form::open(array('class'=>'form-horizontal', 'role'=>'form')) }}
+	{{ Form::open(array('class'=>'form-horizontal', 'role'=>'form', 'autocomplete'=>'On')) }}
 		<div class="form-group">
 			<label class="control-label sr-only" for="username">Username</label>
 			<div class="col-sm-12">

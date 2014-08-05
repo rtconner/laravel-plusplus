@@ -8,6 +8,11 @@ class BootstrapFormBuilder extends FormBuilder {
 		if (!array_key_exists('autocomplete', $options)) {
 			$options['autocomplete'] = 'off';
 		}
+		
+		if(empty($options['role'])) {
+			$options['role'] = 'form';
+		}
+		
 		return parent::open($options);
 	}
 
