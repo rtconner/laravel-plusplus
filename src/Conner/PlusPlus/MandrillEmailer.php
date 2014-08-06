@@ -8,14 +8,15 @@ use Mandrill;
 
 abstract class MandrillEmailer {
 
-	public static $fromEmail = 'from@from.com';
-	public static $fromName = 'name';
+	protected static $subjectPrefix = 'Deploy Hook: ';
+	protected static $fromEmail = 'from@from.com';
+	protected static $fromName = 'Name';
 
 // 	static function doSomeThing() {
 // 		$vars = array(
-// 			'name'=>'',
-// 			'val2'=>'Two',
-// 			'val3'=>'Three',
+// 			'name'=>'', *|NAME|*
+// 			'val2'=>'Two', *|VAL2|*
+// 			'val3'=>'Three', *|VAL3|*
 // 		);
 // 		return static::mandrillSend(
 // 			'mandrill_template',
@@ -26,7 +27,7 @@ abstract class MandrillEmailer {
 // 	}
 
 	static function mandrill() {
-		$mandrill = new Mandrill(\Config::get('mandrill.api_key'));
+		$mandrill = new Mandrill(\Config::get('services.mandrill.secret'));
 
 		curl_setopt ($mandrill->ch, CURLOPT_CAINFO, cacert_path());
 
@@ -42,8 +43,10 @@ abstract class MandrillEmailer {
 	 * @param array $vars - array('var_name'=>'Value', 'another'=>'Another Value')
 	 */
 	static function mandrillSend($template, $subject, $to, $vars) {
-		if(\Config::get('mail.pretend'))
+		if(\Config::get('mail.pretend')) {
+			// dunno. send fake email somehow?
 			return true;
+		}
 
 		$mandrill = static::mandrill();
 
