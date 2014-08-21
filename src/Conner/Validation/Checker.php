@@ -85,14 +85,22 @@ abstract class Checker {
     	$class = get_called_class();
     	
     	if(empty(static::$validator[$class]) && !is_null($input)) {
-    		static::$validator[$class] = Validator::make($input, static::$rules, static::$messages);
+    		static::$validator[$class] = static::validatorInstance($input);
     	}
     	
     	if(empty(static::$validator[$class])) {
-    		throw new \Exception('Must call validate() before you call getValidator(). Those are the rules. ['.$class.']');
+    		return null;
+//     		throw new \Exception('Must call validate() before you call getValidator(). Those are the rules. ['.$class.']');
     	}
 
     	return static::$validator[$class];
+    }
+    
+    /**
+     * Allow for this function to be overrident on extending classes
+     */
+    protected static function validatorInstance($input) {
+    	return Validator::make($input, static::$rules, static::$messages);
     }
 
 }
