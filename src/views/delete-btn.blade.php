@@ -34,10 +34,13 @@ $route = $matches[0].'destroy';
 </div>
 {{ Form::close() }}
 
-<script type="text/javascript">
+@section('scripts')
+	@parent
+<script>
 $(function () {
 	$('#confirm-delete-{{{$item->id}}}').on('show.bs.modal', function(e) {
 		$(this).find('.btn-danger').attr('href', $(e.relatedTarget).data('href'));
 	});
 });
 </script>
+@stop
