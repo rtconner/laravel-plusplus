@@ -1,1 +1,1 @@
-@include('plusplus::scaffold.dump')
+@include('plusplus::dump')
