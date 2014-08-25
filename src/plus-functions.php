@@ -66,7 +66,7 @@ function jse($str) {
 
 /**
  * Format a number to a price value (currently only USD). Always padded to two decimal places.
- * 
+ *
  * @param $amount to format as a price
  * @param $fmt string
  *     USD - 0,000.00
@@ -102,7 +102,7 @@ function ordinal($cdnl){
 
 /**
  * Fetch log of database queries
- * 
+ *
  * @param string $last [false] - if true, only return last query
  * @return array of queries
  */
@@ -138,10 +138,10 @@ function query_table() {
 
 /**
  * Replaces any parameter placeholders in a query with the value of that
- * parameter. Useful for debugging. Assumes anonymous parameters from 
+ * parameter. Useful for debugging. Assumes anonymous parameters from
  * $params are are in the same order as specified in $query
  * @author glendemon
- * 
+ *
  * @param string $query The sql query with parameter placeholders
  * @param array $params The array of substitution parameters
  * @return string The interpolated query
@@ -183,12 +183,12 @@ function strip_nl($str) {
  * Fetch currently logged in user
  * user() // return User object of currently logged in user
  * user($field) // return single field
- * 
+ *
  * Returns false if not logged in
  */
 if(!function_exists('user')) {
 	function user($field=null) {
-		if(!Auth::check()) 
+		if(!Auth::check())
 			return false;
 	
 		$user = Auth::user();
@@ -202,7 +202,7 @@ if(!function_exists('user')) {
 }
 
 /**
- * Reload session data of currently logged in user from database. It's 
+ * Reload session data of currently logged in user from database. It's
  * smart to call this function after edits to the user data.
  */
 if(!function_exists('user_reload')) {
@@ -219,15 +219,15 @@ if(!function_exists('user_reload')) {
 	}
 }
 
-if ( ! function_exists('with_empty'))
+if ( ! function_exists('withEmpty'))
 {
 	/**
 	 * Return list with empty option prepended. Useful in Form::select.
-	 * 
+	 *
 	 * @param array  $list
 	 * @param mixed  $empty
 	 */
-	function with_empty($list, $empty='')
+	function withEmpty($list, $empty='')
 	{
 		if(!is_array($empty)) $empty = array(''=>$empty);
 
