@@ -27,6 +27,7 @@ class PlusPlusServiceProvider extends ServiceProvider {
 			'\Conner\Command\CodePerms',
 			'\Conner\Command\CodeUpdate',
 			'\Conner\Command\DBExpunge',
+			'\Conner\Command\DBTruncate',
 		));
 		
 	}
