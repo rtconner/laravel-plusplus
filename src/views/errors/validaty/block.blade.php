@@ -1,6 +1,7 @@
 @if(get_class($errors) == 'Illuminate\Support\ViewErrorBag' && $errors->any())
-	
+
 @section('scripts')
+@parent
 <script>
 Validaty.type = 'block';
 $(function(){
