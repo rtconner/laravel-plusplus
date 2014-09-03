@@ -21,6 +21,13 @@ trait OwnedTrait {
 	}
 	
 	/**
+	 * Build query to only find records owned by currently logged in user
+	 */
+	public function scopeNotOwned($query) {
+		return $query->where('user_id', '<>', user('id'));
+	}
+	
+	/**
 	 * Is the currently logged in user the owner
 	 */
 	public function getAmOwnerAttribute() {
