@@ -15,6 +15,26 @@ Form::macro("check", function($name, $options = array()) {
 });
 
 /**
+ * Read only HTML display of ratings. Requires font-awesome
+ */
+HTML::macro('rating', function($rating, $outOf=5) {
+	$html = '<span class="star-rating" title="'.e($rating).' our of '.e($outOf).' stars">';
+	for($i=1;$i<=$outOf;$i++) {
+		if($i <= $rating) {
+  			$html .= '<span class="fa fa-star fa-2x"></span>';
+		} elseif($i < $rating && $i <= $rating+1) {
+  			$html .= '<span class="fa fa-star-half-o fa-2x"></span>';
+		} else {
+  			$html .= '<span class="fa fa-star-o fa-2x"></span>';
+		}
+	}
+	
+	$html .= '</span>';
+	return $html;
+	
+});
+
+/**
  * Get either a Gravatar URL or complete image tag for a specified email address.
  *
  * @param string $email The email address
@@ -25,7 +45,9 @@ Form::macro("check", function($name, $options = array()) {
  * @return Image tag HTML
  * @source http://gravatar.com/site/implement/images/php/
  */
-HTML::macro("gravatar", function($email, $size = 80, $default = 'mm', $rating = 'pg', $attributes = array()) {
+HTML::macro("gravatar", function($email, $size = 80, $attributes = array('class'=>'img-responsive')) {
+	$default = 'mm';
+	$rating = 'pg';
 	return HTML::image(gravatar($email, $size, $default, $rating), null, $attributes, $secure = null);
 });
 

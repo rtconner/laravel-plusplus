@@ -7,7 +7,7 @@ trait UuidableTrait {
 		static::registerModelEvent('creating', function($model){
 			$model->incrementing = false;
 		
-			if(!$model->exists) {
+			if(!$model->exists && empty($model->{$model->getKeyName()})) {
 				$model->{$model->getKeyName()} = (string) \Webpatser\Uuid\Uuid::generate(4);
 			}
 		});
