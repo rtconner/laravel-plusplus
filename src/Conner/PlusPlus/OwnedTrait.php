@@ -15,16 +15,24 @@ trait OwnedTrait {
 
 	/**
 	 * Build query to only find records owned by currently logged in user
+	 * or pass in a userId as parameter
 	 */
-	public function scopeOwned($query) {
-		return $query->where('user_id', user('id'));
+	public function scopeOwned($query, $userId=null) {
+		if(is_null($userId)) {
+			$userId = user('id');
+		}
+		return $query->where('user_id', $userId);
 	}
 	
 	/**
-	 * Build query to only find records owned by currently logged in user
+	 * Build query to only find records owned by current logged in user
+	 * or pass in a userId as parameter
 	 */
-	public function scopeNotOwned($query) {
-		return $query->where('user_id', '<>', user('id'));
+	public function scopeNotOwned($query, $userId=null) {
+		if(is_null($userId)) {
+			$userId = user('id');
+		}
+		return $query->where('user_id', '<>', $userId);
 	}
 	
 	/**
