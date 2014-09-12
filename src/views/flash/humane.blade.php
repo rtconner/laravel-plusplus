@@ -2,7 +2,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('success')) }}}", { timeout: 5000, addnCls: 'humane-original-success' })</script>
+	<script>humane.log("{{ jse(\Session::get('success')) }}", { timeout: 5000, addnCls: 'humane-original-success' })</script>
 	@stop
 
 @endif
@@ -10,7 +10,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('error')) }}}", { timeout: 5000, addnCls: 'humane-original-error' })</script>
+	<script>humane.log("{{ jse(\Session::get('error')) }}", { timeout: 5000, addnCls: 'humane-original-error' })</script>
 	@stop
 
 @endif
@@ -18,7 +18,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('message')) }}}", { timeout: 5000 })</script>
+	<script>humane.log("{{ jse(\Session::get('message')) }}", { timeout: 5000 })</script>
 	@stop
 
 @endif
@@ -26,7 +26,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('info')) }}}", { timeout: 5000 })</script>
+	<script>humane.log("{{ jse(\Session::get('info')) }}", { timeout: 5000 })</script>
 	@stop
 
 @endif
@@ -34,7 +34,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('warning')) }}}", { timeout: 5000, addnCls: 'humane-original-error' })</script>
+	<script>humane.log("{{ jse(\Session::get('warning')) }}", { timeout: 5000, addnCls: 'humane-original-error' })</script>
 	@stop
 
 @endif

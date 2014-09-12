@@ -2,7 +2,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('success')) }}}", { clickToClose: true, timeout: 7500, addnCls: 'humane-flatty-success' })</script>
+	<script>humane.log("{{ jse(\Session::get('success')) }}", { clickToClose: true, timeout: 7500, addnCls: 'humane-flatty-success' })</script>
 	@stop
 
 @endif
@@ -10,7 +10,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('error')) }}}", { clickToClose: true, timeout: 10000, addnCls: 'humane-flatty-error' })</script>
+	<script>humane.log("{{ jse(\Session::get('error')) }}", { clickToClose: true, timeout: 10000, addnCls: 'humane-flatty-error' })</script>
 	@stop
 
 @endif
@@ -18,7 +18,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('message')) }}}", { clickToClose: true, timeout: 5000 })</script>
+	<script>humane.log("{{ jse(\Session::get('message')) }}", { clickToClose: true, timeout: 5000 })</script>
 	@stop
 
 @endif
@@ -26,7 +26,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('info')) }}}", { clickToClose: true, timeout: 5000 })</script>
+	<script>humane.log("{{ jse(\Session::get('info')) }}", { clickToClose: true, timeout: 5000 })</script>
 	@stop
 
 @endif
@@ -34,7 +34,7 @@
 
 	@section('scripts')
 	@parent
-	<script>humane.log("{{{ jse(\Session::get('warning')) }}}", { clickToClose: true, timeout: 7500, addnCls: 'humane-flatty-error' })</script>
+	<script>humane.log("{{ jse(\Session::get('warning')) }}", { clickToClose: true, timeout: 7500, addnCls: 'humane-flatty-error' })</script>
 	@stop
 
 @endif
