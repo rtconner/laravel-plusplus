@@ -43,11 +43,17 @@ abstract class Checker {
      *
      * @return array
      */
-    public static function validate($input) {
+    public static function validate(&$input) {
     	static::boot();
     	
         Event::fire('validating', [$input]);
 
+        foreach($input as $ipt) {
+        	if(is_string($ipt)) {
+        		$ipt = trim($ipt);
+        	}
+        }
+        
         $validator = static::getValidator($input);
 
         if($validator->fails()) {
