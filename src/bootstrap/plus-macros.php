@@ -17,15 +17,19 @@ Form::macro("check", function($name, $options = array()) {
 /**
  * Read only HTML display of ratings. Requires font-awesome
  */
-HTML::macro('rating', function($rating, $outOf=5) {
-	$html = '<span class="star-rating" title="'.e($rating).' our of '.e($outOf).' stars">';
+HTML::macro('rating', function($rating, $outOf=5, $class='') {
+	if(is_null($rating)) {
+		return '';
+	}
+	
+	$html = '<span class="star-rating" title="'.e($rating).' out of '.e($outOf).' stars">';
 	for($i=1;$i<=$outOf;$i++) {
 		if($i <= $rating) {
-  			$html .= '<span class="fa fa-star fa-2x"></span>';
+  			$html .= '<span class="fa fa-star '.$class.'"></span>';
 		} elseif($i < $rating && $i <= $rating+1) {
-  			$html .= '<span class="fa fa-star-half-o fa-2x"></span>';
+  			$html .= '<span class="fa fa-star-half-o '.$class.'"></span>';
 		} else {
-  			$html .= '<span class="fa fa-star-o fa-2x"></span>';
+  			$html .= '<span class="fa fa-star-o '.$class.'"></span>';
 		}
 	}
 	

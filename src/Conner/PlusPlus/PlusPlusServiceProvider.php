@@ -9,9 +9,9 @@ class PlusPlusServiceProvider extends ServiceProvider {
 	public function register() {
 		$this->package('rtconner/laravel-plusplus', 'plusplus');
 		
-		include(__DIR__.'/../../plus-functions.php');
-		include(__DIR__.'/../../plus-constants.php');
-		include(__DIR__.'/../../plus-exceptions.php');
+		include_once(__DIR__.'/../../plus-functions.php');
+		include_once(__DIR__.'/../../plus-constants.php');
+		include_once(__DIR__.'/../../plus-exceptions.php');
 		
 		$this->app['bootstrapform'] = $this->app->share(function($app) {
 			$form = new BootstrapFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());

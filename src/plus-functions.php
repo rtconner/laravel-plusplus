@@ -191,6 +191,10 @@ if(!function_exists('user')) {
 		if(!Auth::check())
 			return false;
 	
+		if($field == 'id') {
+			return Auth::id();
+		}
+		
 		$user = Auth::user();
 		
 		if(is_null($field)) {
