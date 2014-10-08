@@ -48,7 +48,7 @@ abstract class Checker {
     	
         Event::fire('validating', [$input]);
 
-        foreach($input as $ipt) {
+        foreach((array) $input as $ipt) {
         	if(is_string($ipt)) {
         		$ipt = trim($ipt);
         	}
