@@ -12,7 +12,15 @@
 	@foreach($list as $key => $val)
 	<tr>
 		<td>{{{ $key }}}</td>
-		<td>{{ nl2br(e($val)) }}</td>
+		<td>
+		@if(is_array($val))
+			{{{ print_r($val, true) }}}
+		@elseif(is_object($val))
+			{{{ print_r($val, true) }}}
+		@else
+			{{ nl2br(e($val)) }}
+		@endif
+		</td>
 	</tr>
 	@endforeach
 </table>
