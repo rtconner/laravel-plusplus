@@ -2,9 +2,6 @@
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
-use Illuminate\Foundation\Artisan;
-use \DB;
 
 class DBRebuild extends Command {
 
