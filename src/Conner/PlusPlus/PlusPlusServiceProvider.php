@@ -7,8 +7,6 @@ class PlusPlusServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	public function register() {
-		$this->package('rtconner/laravel-plusplus', 'plusplus');
-		
 		include_once(__DIR__.'/../../plus-functions.php');
 		include_once(__DIR__.'/../../plus-constants.php');
 		include_once(__DIR__.'/../../plus-exceptions.php');
@@ -28,6 +26,7 @@ class PlusPlusServiceProvider extends ServiceProvider {
 			'\Conner\Command\CodeUpdate',
 			'\Conner\Command\DBExpunge',
 			'\Conner\Command\DBTruncate',
+			'\Conner\Command\DBRebuild',
 		));
 		
 	}
