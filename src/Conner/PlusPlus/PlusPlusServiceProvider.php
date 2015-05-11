@@ -10,7 +10,7 @@ class PlusPlusServiceProvider extends ServiceProvider {
 		include_once(__DIR__.'/../../plus-functions.php');
 		include_once(__DIR__.'/../../plus-constants.php');
 		include_once(__DIR__.'/../../plus-exceptions.php');
-		
+
 		$this->app['bootstrapform'] = $this->app->share(function($app) {
 			$form = new BootstrapFormBuilder($app['html'], $app['url'], $app['session.store']->getToken());
 
@@ -20,6 +20,13 @@ class PlusPlusServiceProvider extends ServiceProvider {
 	
 	public function boot() {
 		include(__DIR__.'/../../bootstrap/plus-macros.php');
+
+		// this shit don't work at the moment
+// 		$schema = $this->app->make('db')->connection()->getSchemaBuilder();
+		
+// 		$schema->blueprintResolver(function($table, $callback) {
+// 			return new Conner\PlusPlus\Plusprint($table, $callback);
+// 		});
 		
 		$this->commands(array(
 			'\Conner\Command\CodePerms',
