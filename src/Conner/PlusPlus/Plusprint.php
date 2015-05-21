@@ -15,7 +15,7 @@ class Plusprint extends Blueprint {
 	 */
 	public function uuid($column)
 	{
-		$this->string($column, 36)->primary();
+		return $this->string($column, 36)->primary();
 	}
 
 	/**
@@ -27,12 +27,12 @@ class Plusprint extends Blueprint {
 	 */
 	public function address($prefix = '', $defaultCountry = 'US')
 	{
-		$this->string($prefix.'street', 50)->default('');
-		$this->string($prefix.'street_extra', 50)->default('');
-		$this->string($prefix.'city', 50)->default('');
-		$this->string($prefix.'state_a2', 2)->default('');
-		$this->string($prefix.'state_name', 60)->default('');
-		$this->string($prefix.'zip', 11)->default('');
+		$this->string($prefix.'street', 50)->nullable();
+		$this->string($prefix.'street_extra', 50)->nullable();
+		$this->string($prefix.'city', 50)->nullable();
+		$this->string($prefix.'state_a2', 2)->nullable();
+		$this->string($prefix.'state_name', 60)->nullable();
+		$this->string($prefix.'zip', 11)->nullable();
 		if($defaultCountry) {
 			$this->string($prefix.'country_a2', 2)->default($defaultCountry);
 		}
