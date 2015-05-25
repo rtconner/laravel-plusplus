@@ -21,13 +21,6 @@ class PlusPlusServiceProvider extends ServiceProvider {
 	public function boot() {
 		include(__DIR__.'/../../bootstrap/plus-macros.php');
 
-		// this shit don't work at the moment
-// 		$schema = $this->app->make('db')->connection()->getSchemaBuilder();
-		
-// 		$schema->blueprintResolver(function($table, $callback) {
-// 			return new Conner\PlusPlus\Plusprint($table, $callback);
-// 		});
-		
 		$this->commands(array(
 			'\Conner\Command\CodePerms',
 			'\Conner\Command\CodeUpdate',
