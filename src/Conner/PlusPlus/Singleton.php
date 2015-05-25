@@ -23,5 +23,11 @@ abstract class Singleton {
 	private function __wakeup()
 	{
 	}
+
+	public static function __callStatic($name, $arguments)
+	{
+		$instance = static::getInstance();
+		return call_user_func_array(array($instance, $name), $arguments);
+	}
 	
 }
