@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Conner\PlusPlus\Exception\ConstantDataException;
 
 abstract class ConstantModel extends Model {
 	
@@ -12,7 +13,10 @@ abstract class ConstantModel extends Model {
 	 * 
 	 * @return array
 	 */
-	protected static function data();
+	protected static function data()
+	{
+		throw new NotImplementedException('data() method must be implemented.');
+	}
 	
 	public static function all($columns = array('*'))
 	{
@@ -31,12 +35,13 @@ abstract class ConstantModel extends Model {
 		return static::buildCollection()->find($id, $columns);
 	}
 	
-	private function buildCollection()
+	private static function buildCollection()
 	{
 		if(empty(static::$collection)) {
 			static::$collection = new Collection();
 			
-			foreach(static::data() as $row) {
+			$data = static::data();
+			foreach($data as $row) {
 				static::$collection->add(new static($row));
 			}
 		}
@@ -44,21 +49,11 @@ abstract class ConstantModel extends Model {
 		return static::$collection;
 	}
 	
-	public function setAttribute($key, $value)
-	{
-		throw new ConstantDataException('Cannot write data to ConstantModel');
-	}
-	
 	public function save(array $options = array())
 	{
 		throw new ConstantDataException('Cannot write data to ConstantModel');
 	}
 
-	public function save(array $options = array())
-	{
-		throw new ConstantDataException('Cannot write data to ConstantModel');
-	}
-	
 	public function update(array $attributes = array())
 	{
 		throw new ConstantDataException('Cannot write data to ConstantModel');
