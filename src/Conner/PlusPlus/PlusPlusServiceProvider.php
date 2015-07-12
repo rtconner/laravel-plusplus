@@ -18,7 +18,10 @@ class PlusPlusServiceProvider extends ServiceProvider {
 		});
 	}
 	
-	public function boot() {
+	public function boot()
+	{
+		$this->loadViewsFrom(__DIR__.'/../../views', 'plusplus');
+		
 		include(__DIR__.'/../../bootstrap/plus-macros.php');
 
 		$this->commands(array(
@@ -28,7 +31,6 @@ class PlusPlusServiceProvider extends ServiceProvider {
 			'\Conner\Command\DBTruncate',
 			'\Conner\Command\DBRebuild',
 		));
-		
 	}
 	
 	public function provides() {
