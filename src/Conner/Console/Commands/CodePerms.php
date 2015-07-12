@@ -1,4 +1,4 @@
-<?php namespace Conner\Command;
+<?php namespace Conner\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
