@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Build array with identical keys and values
  * ex: array_make('key1', 'key2') == array('key1'=>'key1', 'key2'=>'key2')
@@ -18,24 +17,35 @@ function array_make() {
 /**
  * Return full path to a valid cacert.pem file. Useful for CURLOPT_CAINFO option.
  */
-function cacert_path() {
+function cacert_path()
+{
 	return realpath(dirname(__DIR__).DS.'cacert.pem');
 }
 
 /**
  * CSV escape
  */
-function csve($str, $quote=false) {
+function csve($str, $quote=false)
+{
 	if(is_array($str)) {
 		$ret = array();
-		foreach($str as $s)
+		foreach($str as $s) {
 			$ret[] = csve($s, $quote);
+		}
 		return $ret;
 	}
-	$str = trim($str);
-	$str = preg_replace ("/\"/", "\"\"", $str);
-	if($quote)
+	
+	if($escape === 'strip') {
+		$str = str_replace ('"', '', $str);
+	} elseif($escape) {
+		$str = trim($str);
+		$str = preg_replace ("/\"/", "\"\"", $str);
+	}
+	
+	if($quote) {
 		$str = '"'.$str.'"';
+	}
+	
 	return $str;
 }
 
@@ -59,7 +69,8 @@ function gravatar($email, $size = 80, $default = 'mm', $rating = 'g') {
 /**
  * Javascript escape
  */
-function jse($str) {
+function jse($str)
+{
 	$str = str_replace("\n", "", str_replace("\r", "", $str));
 	return addslashes($str);
 }
@@ -74,7 +85,8 @@ function jse($str) {
  *     #USD - 0000.00
  * @return string (always returns a string type)
  */
-function money($amount, $fmt = 'USD') {
+function money($amount, $fmt = 'USD')
+{
 	$amount = trim($amount, '$ ');
 	$amount = preg_replace("/[^0-9.]/", "", $amount);
 	ceil((float)$amount * 100) / 100;
@@ -92,7 +104,8 @@ function money($amount, $fmt = 'USD') {
 /**
  * Given a number, return the number + 'th' or 'rd' etc
  */
-function ordinal($cdnl){
+function ordinal($cdnl)
+{
 	$test_c = abs($cdnl) % 10;
 	$ext = ((abs($cdnl) %100 < 21 && abs($cdnl) %100 > 4) ? 'th'
 			: (($test_c < 4) ? ($test_c < 3) ? ($test_c < 2) ? ($test_c < 1)
@@ -106,7 +119,8 @@ function ordinal($cdnl){
  * @param string $last [false] - if true, only return last query
  * @return array of queries
  */
-function queries($last = false) {
+function queries($last = false)
+{
 	$queries = \DB::getQueryLog();
 	
 	foreach($queries as &$query) {
@@ -125,7 +139,8 @@ function queries($last = false) {
  *
  * @param string $all
  */
-function query_table() {
+function query_table()
+{
 	$queries = queries();
 
 	$html = '<table style="background-color: #FFFF00;border: 1px solid #000000;color: #000000;padding-left: 10px;padding-right: 10px;width: 100%;">';
@@ -146,36 +161,40 @@ function query_table() {
  * @param array $params The array of substitution parameters
  * @return string The interpolated query
  */
-function query_interpolate($query, $params) {
-    $keys = array();
-    $values = $params;
+function query_interpolate($query, $params)
+{
+	$keys = array();
+	$values = $params;
 
-    # build a regular expression for each parameter
-    foreach ($params as $key => $value) {
-        if (is_string($key)) {
-            $keys[] = '/:'.$key.'/';
-        } else {
-            $keys[] = '/[?]/';
-        }
+	foreach ($params as $key => $value) {
+		if (is_string($key)) {
+			$keys[] = '/:'.$key.'/';
+		} else {
+			$keys[] = '/[?]/';
+		}
 
-        if (is_array($value))
-            $values[$key] = implode(',', $value);
+		if (is_array($value)) {
+			$values[$key] = implode(',', $value);
+		}
 
-        if (is_null($value))
-            $values[$key] = 'NULL';
-    }
-    // Walk the array to see if we can add single-quotes to strings
-    array_walk($values, create_function('&$v, $k', 'if (!is_numeric($v) && $v!="NULL") $v = "\'".$v."\'";'));
+		if (is_null($value)) {
+			$values[$key] = 'NULL';
+	}
+	}
 
-    $query = preg_replace($keys, $values, $query, 1, $count);
+	// Walk the array to see if we can add single-quotes to strings
+	array_walk($values, create_function('&$v, $k', 'if (!is_numeric($v) && $v!="NULL") $v = "\'".$v."\'";'));
 
-    return $query;
+	$query = preg_replace($keys, $values, $query, 1, $count);
+
+	return $query;
 }
 
 /**
  * Strip new line breaks from a string
  */
-function strip_nl($str) {
+function strip_nl($str)
+{
 	return str_replace("\n", "", str_replace("\r", "", $str));
 }
 
@@ -187,9 +206,11 @@ function strip_nl($str) {
  * Returns false if not logged in
  */
 if(!function_exists('user')) {
-	function user($field=null) {
-		if(!Auth::check())
+	function user($field=null)
+	{
+		if(!Auth::check()) {
 			return false;
+		}
 	
 		if($field == 'id') {
 			return Auth::id();
@@ -206,43 +227,10 @@ if(!function_exists('user')) {
 }
 
 /**
- * Reload session data of currently logged in user from database. It's
- * smart to call this function after edits to the user data.
- */
-if(!function_exists('user_reload')) {
-	function user_reload() {
-		// this needs testing/work
-		$userId = Auth::id();
-		
-		if(!$userId) { return; }
-	// 	App::getBindings();
-		$provider = App::getConcrete('UserProviderInterface');
-		$user = $provider->retrieveById($userId);
-		
-		Auth::setUser($user); // laravel apparently does not store much in the session
-	}
-}
-
-if ( ! function_exists('withEmpty'))
-{
-	/**
-	 * Return list with empty option prepended. Useful in Form::select.
-	 *
-	 * @param array  $list
-	 * @param mixed  $empty
-	 */
-	function withEmpty($list, $empty='')
-	{
-		if(!is_array($empty)) $empty = array(''=>$empty);
-
-		return  $empty + $list;
-	}
-}
-
-/**
  * Display an escaped value, or a dash if the value is empty
  */
-function valordash($val) {
+function valordash($val)
+{
 	if(strlen($val)) { return e($val); }
 	return '-';
 }
