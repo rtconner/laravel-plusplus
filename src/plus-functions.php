@@ -24,13 +24,17 @@ function cacert_path()
 
 /**
  * CSV escape
+ *
+ * @param string $str
+ * @param boolean $quote wrap every string in quotes
+ * @param boolean $escape escape the double quoted string
  */
-function csve($str, $quote=false)
+function csve($str, $quote=false, $escape=true)
 {
 	if(is_array($str)) {
 		$ret = array();
 		foreach($str as $s) {
-			$ret[] = csve($s, $quote);
+			$ret[] = csve($s, $quote, $escape);
 		}
 		return $ret;
 	}
